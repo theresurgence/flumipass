@@ -1,0 +1,26 @@
+#!/bin/bash
+
+# feel free to change this
+NUSNETID_FILE=~/.nusnet.txt
+
+if [[ ! -f "$NUSNETID_FILE" ]]; then
+	read -r -p "Username (include the nusstu\ prefix) :" NUSNETID 
+    echo "$NUSNETID" > "$NUSNETID_FILE"
+fi
+
+read -r USERNAME < "$NUSNETID_FILE"
+
+PASSWORD="$(pass nusnet)"
+
+# Optional, uncomment line below to show help each time flumi-pass is run
+# fluminurs --help
+
+# adds support to run the options and arguments that fluminurs allows for
+if [[ -z "$1" ]]; then
+	printf "%s\n%s\nn\n" "$USERNAME" "$PASSWORD" | fluminurs
+elif [[ -z "$2" ]]; then
+	printf "%s\n%s\nn\n" "$USERNAME" "$PASSWORD" | fluminurs "$1"
+else
+	printf "%s\n%s\nn\n" "$USERNAME" "$PASSWORD" | fluminurs "$1" "$2"
+fi
+
