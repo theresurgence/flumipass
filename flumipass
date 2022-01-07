@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Uncomment line below to show help each time flumi-pass is run
+# Uncomment line below to show help each time flumipass is run
 # fluminurs --help
 
 # feel free to change the location of the nusnetID file
