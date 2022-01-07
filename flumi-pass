@@ -1,6 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-# feel free to change this
+# Uncomment line below to show help each time flumi-pass is run
+# fluminurs --help
+
+# feel free to change the location of the nusnetID file
 NUSNETID_FILE=~/.nusnet.txt
 
 if [[ ! -f "$NUSNETID_FILE" ]]; then
@@ -10,12 +13,14 @@ fi
 
 read -r USERNAME < "$NUSNETID_FILE"
 
+# "nusnet" is the name of the password file stored by "pass"
+# feel free to change the name
 PASSWORD="$(pass nusnet)"
 
-# Optional, uncomment line below to show help each time flumi-pass is run
-# fluminurs --help
 
-# adds support to run the options and arguments that fluminurs allows for
+# for executing the options and arguments that fluminurs supports
+# also answers the prompts that fluminurs asks for on startup, without saving the password
+# in plaintext
 if [[ -z "$1" ]]; then
 	printf "%s\n%s\nn\n" "$USERNAME" "$PASSWORD" | fluminurs
 elif [[ -z "$2" ]]; then
